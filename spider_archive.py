@@ -38,12 +38,15 @@ def download(article_list):
             print(picname)
             filename = CurrentPath + '/rekt_img/' + picname
             picnum = picnum + 1
-            print(u'下完了%s张' % picnum)
-            try:
-                urllib.request.urlretrieve(img_src, filename)
-                time.sleep(0.5)
-            except Exception:
-                print(u'这张图片下载出问题了： %s' % filename)
+            if os.path.exists(filename):
+                print(u'该文件已经存在')
+            else:
+                try:
+                    urllib.request.urlretrieve(img_src, filename)
+                    time.sleep(0.5)
+                    print(u'下完了%s张' % picnum)
+                except Exception:
+                    print(u'这张图片下载出问题了： %s' % filename)
 
 
 # 程序入口
