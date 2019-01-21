@@ -5,11 +5,17 @@ from bs4 import BeautifulSoup
 import os
 import requests
 import time
+import socket
+import socks
 
 
 def getpic(homepage="", wrongtry=0, leastlink=""):
 
     piclist = []
+
+    socks.set_default_proxy(socks.SOCKS5, "127.0.0.1", 1086)
+    socket.socket = socks.socksocket
+
     session = requests.session()
     html = session.get(homepage, headers=headers)
     soup = BeautifulSoup(html.content, "html.parser")
@@ -50,14 +56,16 @@ if __name__ == '__main__':
         print("创建目录")
         # 创建目录
 print ("存储在 PY文件目录/twitter 中")
-user_agent = 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36'
+user_agent = 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 ' \
+             '(KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36'
 headers = {'User-Agent': user_agent, 'Referer': 'https://www.rektmag.net'}
 # 准备headers
 pagenum = 0
 picnum = 0
 # 准备计次变量
 
-sites = ["https://twitter.com/PDChina", "https://twitter.com/NatGeo", "https://twitter.com/XinhuaChinese"]
+sites = ["https://twitter.com/yuzuki_shiroko", "https://twitter.com/CumCum_x",
+         "https://twitter.com/WANIMAL912", "https://twitter.com/chuju9"]
 # homepage = "https://twitter.com/PDChina"
 
 for homepage in sites:
