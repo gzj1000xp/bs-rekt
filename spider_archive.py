@@ -17,7 +17,6 @@ def getpage():
     for asrc in soup.find_all('li', class_='archive-item archive-item--show-date'):
         a_src = asrc.find('a').get('href')
         pageurl = homepage + a_src
-        # print(pageurl)
         article_page.append(pageurl)
     return article_page
 
@@ -25,8 +24,9 @@ def getpage():
 def download(article_list):
     global picnum
     CurrentPath = os.getcwd()
-    print(CurrentPath)
+
     for article in article_list:
+        print(article)
         session_d = requests.session()
         html_d = session_d.get(article, headers=headers)
         soup = BeautifulSoup(html_d.content, "html.parser")
@@ -65,5 +65,4 @@ headers = {'User-Agent': user_agent, 'Referer': 'https://www.rektmag.net'}
 picnum = 0
 
 article_list = getpage()
-# print(article_list)
 download(article_list)
