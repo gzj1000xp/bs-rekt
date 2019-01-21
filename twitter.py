@@ -23,16 +23,14 @@ def getpic(homepage="", wrongtry=0, leastlink=""):
     return piclist
 
 
-def downpic(pic_list):
+def downpic(pic_list, picpath):
     global picnum
-    CurrentPath = os.getcwd()
-    # print(CurrentPath)
     for img_src in pic_list:
         print(img_src)
         picname_list = re.split("/", img_src)
         picname = picname_list[-1]
         print(picname)
-        filename = CurrentPath + '/twitter/' + picname
+        filename = picpath + '/' + picname
         picnum = picnum + 1
         if os.path.exists(filename):
             print(u'该文件已经存在')
@@ -47,8 +45,6 @@ def downpic(pic_list):
 
 # 程序入口
 if __name__ == '__main__':
-    #page = 0
-    #member_id = "1036063"
     if not os.path.exists("twitter"):
         os.makedirs("twitter")
         print("创建目录")
@@ -65,5 +61,13 @@ sites = ["https://twitter.com/PDChina", "https://twitter.com/NatGeo", "https://t
 # homepage = "https://twitter.com/PDChina"
 
 for homepage in sites:
+    site_name = homepage.split('/')[-1]
+    CurrentPath = os.getcwd()
+    PicPath = CurrentPath + '/twitter/' + site_name
+    if os.path.exists(PicPath):
+        pass
+    else:
+        os.mkdir(PicPath)
+
     pic_list = getpic(homepage)
-    downpic(pic_list)
+    downpic(pic_list, PicPath)
