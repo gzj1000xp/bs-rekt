@@ -13,6 +13,7 @@ def getpic(homepage="", wrongtry=0, leastlink=""):
 
     piclist = []
 
+    # pip3 install request[security]
     socks.set_default_proxy(socks.SOCKS5, "127.0.0.1", 1086)
     socket.socket = socks.socksocket
 
