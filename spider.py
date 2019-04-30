@@ -5,6 +5,7 @@ from bs4 import BeautifulSoup
 import os
 import requests
 import time
+import datetime
 
 
 def getpage(wrongtry=0, leastlink=""):
@@ -35,8 +36,15 @@ def downpic(article):
         picname_list = re.split("/", img_src)
         picname = picname_list[-1]
         print(picname)
-        filename = CurrentPath + '/rekt_img/' + picname
+
+        dirname = str(datetime.date.today())
+        filename = CurrentPath + '/rekt_img/' + dirname + '/' + picname
         picnum = picnum + 1
+        if os.path.exists(CurrentPath + '/rekt_img/' + dirname):
+            pass
+        else:
+            os.mkdir(CurrentPath + '/rekt_img/' + dirname)
+
         if os.path.exists(filename):
             print(u'该文件已经存在')
         else:

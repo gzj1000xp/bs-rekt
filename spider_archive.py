@@ -5,7 +5,6 @@ from bs4 import BeautifulSoup
 import os
 import requests
 import time
-import datetime
 
 
 def getpage():
@@ -31,6 +30,11 @@ def download(article_list):
         session_d = requests.session()
         html_d = session_d.get(article, headers=headers)
         soup = BeautifulSoup(html_d.content, "html.parser")
+
+        dirname_list = re.split("/", article)
+        dirname = dirname_list[-4] + '-' + dirname_list[-3] + '-' + dirname_list[-2]
+        print(dirname)
+
         for imgsrc in soup.find_all('div', class_='image-wrapper'):
             img_src = imgsrc.find('img').get('src')
             print(img_src)
@@ -38,7 +42,6 @@ def download(article_list):
             picname = picname_list[-1]
             print(picname)
 
-            dirname = str(datetime.date.today())
             filename = CurrentPath + '/rekt_img/' + dirname + '/' + picname
             picnum = picnum + 1
             if os.path.exists(CurrentPath + '/rekt_img/' + dirname):
