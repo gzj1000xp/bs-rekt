@@ -14,8 +14,8 @@ def getpic(homepage="", wrongtry=0, leastlink=""):
     piclist = []
 
     # pip3 install request[security]
-    socks.set_default_proxy(socks.SOCKS5, "127.0.0.1", 1086)
-    socket.socket = socks.socksocket
+    # socks.set_default_proxy(socks.SOCKS5, "127.0.0.1", 1086)
+    # socket.socket = socks.socksocket
 
     session = requests.session()
     html = session.get(homepage, headers=headers)
@@ -59,7 +59,7 @@ if __name__ == '__main__':
 print ("存储在 PY文件目录/twitter 中")
 user_agent = 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 ' \
              '(KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36'
-headers = {'User-Agent': user_agent, 'Referer': 'https://www.rektmag.net'}
+headers = {'User-Agent': user_agent, 'Referer': 'https://www.twitter.com'}
 # 准备headers
 pagenum = 0
 picnum = 0

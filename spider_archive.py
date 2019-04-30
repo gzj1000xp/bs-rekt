@@ -36,7 +36,7 @@ def download(article_list):
             picname_list = re.split("/", img_src)
             picname = picname_list[-1]
             print(picname)
-            filename = CurrentPath + '/rekt_img/' + picname
+            filename = CurrentPath + '/rekt_img/' + picname_list[-2] + '/' + picname
             picnum = picnum + 1
             if os.path.exists(filename):
                 print(u'该文件已经存在')
