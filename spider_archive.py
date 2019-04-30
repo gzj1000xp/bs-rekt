@@ -7,6 +7,7 @@ import requests
 import time
 import datetime
 
+
 def getpage():
     homepage = "https://www.rektmag.net"
     arcpage = "https://www.rektmag.net/archives/"
