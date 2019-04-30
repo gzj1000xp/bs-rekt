@@ -27,6 +27,11 @@ def downpic(article):
     CurrentPath = os.getcwd()
 
     print(article)
+    dirname_list = re.split("/", article)
+    # dirname = dirname_list[-4] + '-' + dirname_list[-3] + '-' + dirname_list[-2]
+    dirname = dirname_list[-1]
+    print(dirname)
+
     session_d = requests.session()
     html_d = session_d.get(article, headers=headers)
     soup = BeautifulSoup(html_d.content, "html.parser")
@@ -36,8 +41,6 @@ def downpic(article):
         picname_list = re.split("/", img_src)
         picname = picname_list[-1]
         print(picname)
-
-        dirname = str(datetime.date.today())
         filename = CurrentPath + '/rekt_img/' + dirname + '/' + picname
         picnum = picnum + 1
         if os.path.exists(CurrentPath + '/rekt_img/' + dirname):

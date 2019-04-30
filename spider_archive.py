@@ -32,7 +32,8 @@ def download(article_list):
         soup = BeautifulSoup(html_d.content, "html.parser")
 
         dirname_list = re.split("/", article)
-        dirname = dirname_list[-4] + '-' + dirname_list[-3] + '-' + dirname_list[-2]
+        # dirname = dirname_list[-4] + '-' + dirname_list[-3] + '-' + dirname_list[-2]
+        dirname = dirname_list[-1]
         print(dirname)
 
         for imgsrc in soup.find_all('div', class_='image-wrapper'):
